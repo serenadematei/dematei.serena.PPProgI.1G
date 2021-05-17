@@ -1,1 +1,111 @@
 
+#include <stdio.h>
+#include <stdlib.h>
+#define TAM 3
+
+
+typedef struct{
+int id;
+char procesador;
+char marca;
+float precio;
+
+}eNotebook;
+
+
+float aplicarDescuento(float precio);
+int contarCaracteres(char cadena[],char letra);
+void ordenarNotebooks(eNotebook lista[],int tam);
+
+int main()
+{
+    //ej 1
+    float precio=1000;
+
+    //ej 2
+    char cadena[20]={"administracion"};
+    char letra='i';
+    int contador;
+
+    //ej 3
+    eNotebook lista={
+    {200,2,"Lenovo",120000},
+    {201,7,"Apple",200300},
+    {202,5,"BGH",98500},
+
+
+    };
+
+    void ordenarNotebooks(eNotebook lista[],int tam);
+
+
+
+    printf("El precio con el 5 de descuento es %.2f \n\n",aplicarDescuento(precio));
+
+     contador=contarCaracteres(cadena,letra);
+
+    if(contador==0)
+    {
+        printf("La letra %c no aparece en la cadena \n",letra);
+
+    }
+    else
+    {
+        printf("La letra '%c' aparece %d veces en la cadena \n",letra,contador);
+    }
+
+
+
+
+
+}
+
+float aplicarDescuento(float precio)
+{
+    float precioDescuento;
+
+    precioDescuento=precio-precio*5/100;
+
+    return precioDescuento;
+}
+
+int contarCaracteres(char cadena[],char letra)
+{
+    int i=0;
+    int contador=0;
+
+    while(cadena[i]!='\0')
+    {
+        if(cadena[i]==letra)
+        {
+            contador++;
+        }
+        i++;
+    }
+
+    return contador;
+}
+
+void ordenarNotebooks(eNotebook lista[],int tam)
+{
+    eNotebook auxCad;
+
+
+    for(int i=0; i<tam-1; i++)
+    {
+        for(int j=i+1; j<tam; j++)
+        {
+            if(stricmp(lista[i].marca,lista[j].marca)>0)
+            {
+                auxCad=lista[i];
+                lista[i]=lista[j];
+                lista[j]=auxCad;
+            }else if(stricmp(lista[i].marca,lista[j].marca)==0 && lista[i].precio>lista[j].precio)//igualmarca
+            {
+                auxCad=lista[i];
+                lista[i]=lista[j];
+                lista[j]=auxCad;
+            }
+        }
+    }
+}
